@@ -387,13 +387,7 @@ body {
 
 .clock-svg {
     width: 100%;
-    max-width: 180px;
-}
-
-@media (min-width: 640px) {
-    .clock-svg {
-        max-width: 200px;
-    }
+    max-width: 200px;
 }
 
 .clock-face {
