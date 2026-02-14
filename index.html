@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Suite</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/number-to-words/numberToWords.min.js"></script>
+    <script src="https://unpkg.com/petite-vue"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+<div v-scope="AppShell()" v-cloak class="app-container" @click="handleClickOutside">
+
+    <header class="navbar">
+        <div class="nav-content">
+            <div class="brand-wrapper">
+                <a href="/" class="brand">Training</a>
+            </div>
+
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+
+                <button type="button" class="theme-toggle" @click="toggleTheme" aria-label="Toggle Theme">
+                    <svg v-if="darkMode" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M3 12h2.25m.386-6.364l1.591 1.591M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                    </svg>
+
+                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                    </svg>
+                </button>
+
+                <div class="menu-wrapper" @click.stop>
+                    <button class="menu-btn" @click="menuOpen = !menuOpen">
+                        {{ currentLabel }} ▾
+                    </button>
+
+                    <div v-if="menuOpen" class="dropdown">
+                        <input type="text" v-model="search" placeholder="Filter..." class="search-bar">
+
+                        <div class="dropdown-list">
+                            <button
+                                v-for="m in filteredModules"
+                                :key="m.id"
+                                @click="selectModule(m.id)"
+                                class="item"
+                            >
+                                {{ m.label }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="workspace">
+
+        <div v-if="!currentModule" class="hero">
+            <h1 class="title">Ready to practise?</h1>
+            <p>Choose a module from the menu above to start.</p>
+        </div>
+
+        <div v-else class="practice-card">
+
+            <div class="content-area">
+
+                <!-- TEXT UI -->
+                <div v-if="currentApp.ui === 'text'" class="display-text">
+                    {{ currentApp.question }}
+                </div>
+
+                <!-- CLOCK UI -->
+                <div v-if="currentApp.ui === 'clock'" class="display-clock">
+                    <svg viewBox="0 0 100 100" class="clock-svg">
+
+                        <circle cx="50" cy="50" r="48" class="clock-face"/>
+
+                        <line
+                            v-for="n in 60"
+                            :key="n"
+                            x1="50" y1="5" x2="50"
+                            :y2="n % 5 === 0 ? 10 : 7"
+                            :transform="`rotate(${n*6} 50 50)`"
+                            :class="n % 5 === 0 ? 'tick-major' : 'tick-minor'"
+                        />
+
+                        <text
+                            v-for="n in 12"
+                            :key="n"
+                            :x="50 + 36 * Math.sin(n * Math.PI / 6)"
+                            :y="52 - 36 * Math.cos(n * Math.PI / 6)"
+                            text-anchor="middle"
+                            class="clock-number"
+                        >
+                            {{ n }}
+                        </text>
+
+                        <line x1="50" y1="50" x2="50" y2="30"
+                              class="hand hour"
+                              :transform="`rotate(${currentApp.hAngle} 50 50)`" />
+
+                        <line x1="50" y1="50" x2="50" y2="15"
+                              class="hand minute"
+                              :transform="`rotate(${currentApp.mAngle} 50 50)`" />
+
+                        <circle cx="50" cy="50" r="2.5" fill="#1e293b"/>
+                    </svg>
+                </div>
+
+            </div>
+
+            <!-- ANSWER -->
+            <div class="answer-well">
+                <div v-if="revealed" class="answer-content">
+
+                    <div v-if="currentApp.answer.en">
+                        EN: {{ currentApp.answer.en }}
+                    </div>
+
+                    <div v-if="currentApp.answer.es">
+                        ES: {{ currentApp.answer.es }}
+                    </div>
+
+                    <div v-if="currentApp.answer.value !== undefined">
+                        {{ currentApp.answer.value }}
+                    </div>
+
+                </div>
+            </div>
+
+            <footer class="actions">
+                <button class="btn btn-secondary" @click="revealed = !revealed">
+                    {{ revealed ? 'Hide' : 'Answer' }}
+                </button>
+                <button class="btn btn-primary" @click="next()">Next</button>
+            </footer>
+
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

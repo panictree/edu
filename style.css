@@ -1,0 +1,400 @@
+/* -----------------------------------------------------------
+   1. COLOR ARCHITECTURE
+----------------------------------------------------------- */
+
+:root {
+    /* Base Brand Colors */
+    --blue: #3b82f6;
+    --blue-hover: #2563eb;
+
+    /* Layout Colors: Light Mode */
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+
+    /* Interactive Elements */
+    --brand-color: #6481A6;
+    --brand-hover: #97ABC3;
+    --item-hover: #eff6ff;
+
+    /* Effects & Depth */
+    --shadow-sm: rgba(0, 0, 0, 0.05);
+    --shadow-lg: rgba(0, 0, 0, 0.1);
+
+    /* Clock Specifics */
+    --tick-major: var(--text);
+    --tick-minor: #94a3b8;
+    --hand-hour: var(--text);
+    --hand-minute: var(--blue);
+}
+
+[data-theme="dark"] {
+    /* Layout Colors: Dark Mode */
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+
+    /* Interactive Overrides */
+    --brand-color: #94a3b8;
+    --brand-hover: #f1f5f9;
+    --item-hover: #2d3748;
+
+    /* Effects & Depth Overrides */
+    --shadow-sm: rgba(0, 0, 0, 0.3);
+    --shadow-lg: rgba(0, 0, 0, 0.5);
+
+    /* Clock Specific Overrides */
+    --tick-minor: #475569;
+}
+
+/* -----------------------------------------------------------
+   2. GLOBAL RESET & BASE
+----------------------------------------------------------- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition-property: background-color, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+/* -----------------------------------------------------------
+   3. NAVIGATION & HEADER
+----------------------------------------------------------- */
+
+.navbar {
+    background-color: var(--surface);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border);
+    height: 64px;
+}
+
+.nav-content {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.brand {
+    font-weight: 800;
+    color: var(--brand-color);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.brand:hover {
+    color: var(--brand-hover);
+}
+
+.brand:focus {
+    color: var(--brand-hover);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* -----------------------------------------------------------
+   4. MENU & DROPDOWN
+----------------------------------------------------------- */
+
+.menu-wrapper {
+    position: relative;
+}
+
+.menu-btn {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    border-radius: 999px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border);
+    background-color: var(--surface);
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 120%;
+    width: 240px;
+    max-width: 90vw;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: var(--surface);
+    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border);
+    box-shadow: 0 10px 25px var(--shadow-lg);
+    padding: 0.5rem;
+    z-index: 100;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 0.5rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.item {
+    width: 100%;
+    text-align: left;
+    padding: 0.8rem;
+    border: none;
+    background: none;
+    color: var(--text);
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.item:hover {
+    background-color: var(--item-hover);
+    color: var(--blue);
+}
+
+/* -----------------------------------------------------------
+   5. WORKSPACE & CARDS
+----------------------------------------------------------- */
+
+.title {
+    margin-bottom: .75rem;
+}
+
+.workspace {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.practice-card {
+    background-color: var(--surface);
+    width: 100%;
+    max-width: 440px;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 15px var(--shadow-sm);
+    transition: background-color 0.3s ease;
+}
+
+.content-area {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.display-text {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    color: var(--text);
+}
+
+/* -----------------------------------------------------------
+   6. ANSWER SECTION
+----------------------------------------------------------- */
+
+.answer-well {
+    min-height: 100px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    background-color: var(--bg);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border);
+    border-radius: 1.25rem;
+    display: grid;
+    place-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.answer-content {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--muted);
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* -----------------------------------------------------------
+   7. INTERACTIVE BUTTONS
+----------------------------------------------------------- */
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 1.1rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background-color: var(--blue);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-hover);
+}
+
+.btn-secondary {
+    background-color: var(--border);
+    color: var(--muted);
+}
+
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--muted);
+    transition-property: stroke, transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+.theme-toggle {
+    background-color: transparent;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    cursor: pointer;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-property: transform;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+}
+
+.theme-toggle:hover .icon-svg {
+    stroke: var(--text);
+    transform: rotate(12deg);
+}
+
+.theme-toggle:active {
+    transform: scale(0.9);
+}
+
+/* -----------------------------------------------------------
+   8. CLOCK VISUALS (SVG)
+----------------------------------------------------------- */
+
+.clock-svg {
+    width: 100%;
+    max-width: 200px;
+}
+
+.clock-face {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 2;
+}
+
+.clock-number {
+    font-size: 8px;
+    font-weight: 800;
+    fill: var(--muted);
+}
+
+.hand {
+    stroke-linecap: round;
+}
+
+.hour {
+    stroke: var(--hand-hour);
+    stroke-width: 4;
+}
+
+.minute {
+    stroke: var(--hand-minute);
+    stroke-width: 2.5;
+}
+
+.tick-major {
+    stroke: var(--tick-major);
+    stroke-width: 0.7;
+}
+
+.tick-minor {
+    stroke: var(--tick-minor);
+    stroke-width: 0.4;
+}
+
+/* -----------------------------------------------------------
+   9. ACCESSIBILITY
+----------------------------------------------------------- */
+
+button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+input:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
