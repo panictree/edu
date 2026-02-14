@@ -206,9 +206,17 @@ body {
 .workspace {
     min-height: calc(100vh - 64px);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 1rem;
+}
+
+@media (min-width: 640px) {
+    .workspace {
+        justify-content: center;
+        padding-top: 2rem;
+    }
 }
 
 .practice-card {
@@ -216,6 +224,7 @@ body {
     width: 100%;
     max-width: 440px;
     padding: 1.5rem;
+    margin-top: .5rem;
     border-radius: 2rem;
     box-shadow: 0 4px 15px var(--shadow-sm);
     transition: background-color 0.3s ease;
@@ -223,12 +232,13 @@ body {
 
 @media (min-width: 640px) {
     .practice-card {
+        margin-top: 0;
         padding: 2.5rem;
     }
 }
 
 .content-area {
-    min-height: 160px;
+    min-height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,8 +262,7 @@ body {
 
 .answer-well {
     min-height: 80px;
-    padding-top: .75rem;
-    padding-bottom: .75rem;
+    padding: .75rem;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     background-color: var(--bg);
@@ -267,11 +276,17 @@ body {
 }
 
 .answer-content {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1rem;
     color: var(--muted);
     line-height: 1.4;
     text-align: center;
+}
+
+@media (min-width: 640px) {
+    .answer-content {
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
 }
 
 /* -----------------------------------------------------------
@@ -358,7 +373,7 @@ body {
 
 .clock-svg {
     width: 100%;
-    max-width: 160px;
+    max-width: 180px;
 }
 
 @media (min-width: 640px) {
