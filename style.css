@@ -208,24 +208,36 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .practice-card {
     background-color: var(--surface);
     width: 100%;
     max-width: 440px;
-    padding: 2.5rem;
+    padding: 1.5rem;
     border-radius: 2rem;
     box-shadow: 0 4px 15px var(--shadow-sm);
     transition: background-color 0.3s ease;
 }
 
+@media (min-width: 640px) {
+    .practice-card {
+        padding: 2.5rem;
+    }
+}
+
 .content-area {
-    min-height: 220px;
+    min-height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (min-width: 640px) {
+    .content-area {
+        min-height: 220px;
+    }
 }
 
 .display-text {
@@ -239,11 +251,11 @@ body {
 ----------------------------------------------------------- */
 
 .answer-well {
-    min-height: 100px;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    min-height: 80px;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     background-color: var(--bg);
     border-width: 1px;
     border-style: solid;
@@ -346,7 +358,13 @@ body {
 
 .clock-svg {
     width: 100%;
-    max-width: 200px;
+    max-width: 160px;
+}
+
+@media (min-width: 640px) {
+    .clock-svg {
+        max-width: 200px;
+    }
 }
 
 .clock-face {
