@@ -142,10 +142,16 @@ body {
     border-color: var(--border);
     background-color: var(--surface);
     color: var(--text);
-    font-size: .9rem;
+    font-size: .8rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+@media (min-width: 640px) {
+    .menu-btn {
+        font-size: .9rem;
+    }
 }
 
 .dropdown {
@@ -181,12 +187,13 @@ body {
 .item {
     width: 100%;
     text-align: left;
-    padding: 0.8rem;
+    padding: .8rem;
     border: none;
     background: none;
     color: var(--text);
     cursor: pointer;
     border-radius: 8px;
+    font-size: .9rem;
     font-weight: 500;
     transition: all 0.2s ease;
 }
@@ -194,6 +201,12 @@ body {
 .item:hover {
     background-color: var(--item-hover);
     color: var(--blue);
+}
+
+@media (min-width: 640px) {
+    .item {
+        font-size: .9rem;
+    }
 }
 
 /* -----------------------------------------------------------
